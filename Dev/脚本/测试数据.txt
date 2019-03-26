@@ -1,0 +1,49 @@
+-----单元测试数据-------------------------------
+
+--项目
+insert into Project (ProjectName, FirstParty) values ('幸福家园','幸福房地产有限公司')
+insert into Project (ProjectName, FirstParty) values ('空中花园','花园房地产有限公司')
+insert into Project (ProjectName, FirstParty) values ('铂金汉宫','铂金房地产有限公司')
+
+--客户
+insert into Customer(ProjectID,CusName,Phone1) values (1,'张三','13900001234')
+insert into Customer(ProjectID,CusName,Phone1) values (1,'李四','13911112222')
+insert into Customer(ProjectID,CusName,Phone1) values (1,'王五','13922228888')
+insert into Customer(ProjectID,CusName,Phone1) values (2,'李大宾','13933336666')
+insert into Customer(ProjectID,CusName,Phone1) values (2,'郑小末','13944446666')
+insert into Customer(ProjectID,CusName,Phone1) values (2,'陈强','13955556666')
+
+--置业顾问
+insert into Sales (SalesName,ProjectID,ProjectName) values ('赵东南',1,'幸福家园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('钱西北',1,'幸福家园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('孙中心',1,'幸福家园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('周工',2,'空中花园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('李师',2,'空中花园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('王商',2,'空中花园')
+
+
+
+--房产信息
+--房屋
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','1','0101',1,80,5000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','1','0102',1,95,5050)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','2','1601',1,125.85,6500)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','2','2202',1,136.66,6588)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','2','3','0801',1,96,5375)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','2','3','1003',1,86.24,5454)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','2','3','3202',1,105.28,5608)
+
+--商业
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','','','A301',2,120.55,8650)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','','','A302',2,245.76,8252)
+
+--储藏间
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','001',3,12.25,2250)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','002',3,8.76,2000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','003',3,10.66,2250)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','004',3,15.38,3000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','005',3,10,3000)
+
+--车位
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','C01',4,10,16000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemType,Area,Price) values (1,'幸福家园','1','','C02',4,10,18500)

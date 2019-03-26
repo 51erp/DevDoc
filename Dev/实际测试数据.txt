@@ -1,0 +1,13 @@
+--110.240.120.242
+
+
+--项目
+insert into Project (ProjectName, FirstParty) values ('辛集幸福城','辛集幸福城')
+insert into Project (ProjectName, FirstParty) values ('栾城福美国际','栾城福美国际')
+insert into Project (ProjectName, FirstParty) values ('鹿泉健康城','鹿泉健康城')
+insert into Project (ProjectName, FirstParty) values ('栾城尚东金汇','栾城尚东金汇')
+
+--用户
+insert into sysuser (UserName, UserPwd, UserType, ProjectID, ProjectName) values ('齐博', 123456, 2, 1,'辛集幸福城')
+insert into sysuser (UserName, UserPwd, UserType, ProjectID, ProjectName) values ('牛亚婵', 123456, 2, 2,'栾城福美国际')
+insert into sysuser (UserName, UserPwd, UserType, ProjectID, ProjectName) values ('刘晶', 123456, 2, 3,'鹿泉健康城')

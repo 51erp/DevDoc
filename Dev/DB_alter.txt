@@ -1,0 +1,124 @@
+alter table SaleItem add SettleStandardAmount money default 0;
+alter table SaleItem add SettleStandardRate   decimal(18,2) default 0;
+alter table SaleItem add SpecialAmount        money default 0;
+
+alter table Transactions add SettleState int default 1
+
+alter table Transactions  add constraint def_SettleState DEFAULT 1 for SettleState 
+
+---------------------------------------------
+alter table Receipt add Source  int  default 0
+
+
+----20161212-----------------------
+
+/*==============================================================*/
+/* DBMS name:      Microsoft SQL Server 2008                    */
+/* Created on:     2016-12-12 20:34:20                          */
+/*==============================================================*/
+
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('UPGroup')
+            and   type = 'U')
+   drop table UPGroup
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('UpSet')
+            and   type = 'U')
+   drop table UpSet
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('UpValue')
+            and   type = 'U')
+   drop table UpValue
+go
+
+/*==============================================================*/
+/* Table: UPGroup                                               */
+/*==============================================================*/
+create table UPGroup (
+   UPID                 int                  null,
+   ItemID               int                  null
+)
+go
+
+/*==============================================================*/
+/* Table: UpSet                                                 */
+/*==============================================================*/
+create table UpSet (
+   UPID                 int                  identity,
+   ProjectID            int                  null,
+   UpCode               int                  null,
+   BeginDate            date                 null,
+   EndDate              date                 null,
+   constraint PK_UPSET primary key (UPID)
+)
+go
+
+/*==============================================================*/
+/* Table: UpValue                                               */
+/*==============================================================*/
+create table UpValue (
+   UPID                 int                  null,
+   StartValue           decimal(18,2)        null,
+   EndValue             decimal(18,2)        null,
+   UpRate               decimal(18,2)        null
+)
+go
+
+
+-------------20170101--------------------------------
+alter table TransMain add Memo varchar(2000)
+
+alter table TransMain add ExtField1 varchar(200)
+alter table TransMain add ExtField2 varchar(200)
+alter table TransMain add ExtField3 varchar(200)
+alter table TransMain add ExtField4 varchar(200)
+alter table TransMain add ExtField5 varchar(200)
+
+
+alter table TransMain add OrigCustomerName varchar(50)
+alter table TransMain add ChangeNameDate date
+alter table TransMain add ReturnDate date
+
+
+-------------20170307----------Yes--------------------
+alter table TransMain add ExtField6 varchar(200)
+alter table TransMain add ExtField7 varchar(200)
+alter table TransMain add ExtField8 varchar(200)
+alter table TransMain add ExtField9 varchar(200)
+
+-------------20170423----------Yes----------------------
+alter table TransMain add Discount             varchar(200)
+alter table TransMain add Fund                 int 
+alter table TransMain add FormalID             varchar(20)
+alter table TransMain add FormalDate           datetime
+
+alter table  Transactions add LoanDate      datetime
+
+-------------20170616----------Yes----------------------
+ALTER TABLE Receipt
+add constraint  DF_SettleState_xxx  DEFAULT 0 FOR SettleState;
+
+
+--结算条件--
+insert into DictSettleStandard (Code, Name) values (5,'分期金额') 
+
+--结算基数--
+insert into DictSettleBase (Code, Name) values (5,'分期金额')
+
+
+alter table Transactions  add  ConfirmState    int  default 0
+
+alter view V_TransactionBase
+
+
+
+
+

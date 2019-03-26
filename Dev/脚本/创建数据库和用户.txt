@@ -1,0 +1,8 @@
+create database Commission 
+
+use Commission 
+
+
+EXEC sp_addlogin N'commission','sjqc@sjz_2016&CC'
+
+EXEC sp_grantdbaccess N'tony'

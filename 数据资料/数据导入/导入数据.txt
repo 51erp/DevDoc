@@ -1,0 +1,8 @@
+insert into saleitem (ProjectID,ProjectName,Building,Unit,ItemNum,Area,Price,ItemType) 
+select 1,'尚东金汇','1','1',房号,面积,单价,1 from house$
+
+insert into saleitem (ProjectID,ProjectName,Building,ItemNum,Area,Price,ItemType) 
+select 1,'尚东金汇','1',地下编号,地下面积,地下单价,3 from bottom$
+
+insert into Customer (ProjectID,CusName,Phone1,PID,Addr) 
+select 1,客户,convert(numeric,电话),身份证号,地址 from cus$

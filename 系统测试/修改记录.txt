@@ -1,0 +1,34 @@
+20190216
+1 房源导入：模板文件处于打开状态，提示信息不明确 - OK：添加Catch捕获指定异常
+2 房源导入：模板文件有空白行，未测试 - OK
+3 客户导入：有两个以的身份证号码，身份证长度超出 - OK：修改数据字段长度
+4 楼盘：销售项目查询－类型，未区分项目 － OK
+
+20190218
+
+--删除签约记录的捆绑附属
+--更新销售状态
+update  SaleItem set SaleStateCode = 1,SaleStateName = '待售' 
+where ItemID in (select ItemID from ContractMain a --where ProjectID = 4
+inner join ContractDetail b on a.ContractID = b.ContractID
+where ProjectID = 4 and ItemTypeCode = 33)
+
+--更新销售状态
+delete ContractDetail 
+where ItemID in (select ItemID from ContractMain a --where ProjectID = 4
+inner join ContractDetail b on a.ContractID = b.ContractID
+where ProjectID = 4 and ItemTypeCode = 33)
+
+--更新签约总额
+update ContractMain set  TotalAmount = b.Amount 
+from ContractDetail b where ContractMain.ContractID = b.ContractID and ProjectID = 4 
+and ContractMain.ContractID = 3
+
+--还需要自己更新首付、贷款及分期。
+
+-------------------------------------------------------------------------------------
+表单合计数：认购和签约的套数、面积、金额
+
+20190220
+修改0单价，认购和签约总额不能为0？赠品单据？
+
