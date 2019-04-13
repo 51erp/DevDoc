@@ -1,0 +1,179 @@
+--字典级数据，与算法相关，不可维护，初始生成
+
+--房源销售状态
+insert into DictSaleState (Code, Name) values (0,'保留')
+insert into DictSaleState (Code, Name) values (1,'待售')
+insert into DictSaleState (Code, Name) values (2,'认购')
+insert into DictSaleState (Code, Name) values (3,'签约')
+
+
+--款项名称(IsSys:系统内部调用; IsAchievement:业绩统计用)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (0,'贷款',1,1)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (1,'定金',1,0)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (2,'首付',0,0)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (3,'补差',0,1) 
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (4,'交房',0,1)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (5,'限价',0,1)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (6,'退房',1,1)
+insert into DictReceiptType (Code,Name,IsSys,IsAchievement) values (7,'成销',1,1)
+
+
+
+
+--付款类型
+insert into DictPayType (Code, Name) values (1,'全款')
+insert into DictPayType (Code, Name) values (2,'贷款')
+insert into DictPayType (Code, Name) values (3,'全款分期')
+insert into DictPayType (Code, Name) values (4,'首付分期')
+
+
+
+--结算启动条件
+insert into DictSettleStandard (Code, Name) values (1,'合同金额')
+insert into DictSettleStandard (Code, Name) values (2,'首付金额')
+insert into DictSettleStandard (Code, Name) values (3,'分期首笔') 
+insert into DictSettleStandard (Code, Name) values (4,'分期阶段') 
+
+
+--个性化需求暂不考虑
+--insert into DictSettleStandard (Code, Name) values (5,'回款金额') 
+--insert into DictSettleStandard (Code, Name) values (6,'指定金额') 
+--insert into DictSettleStandard (Code, Name) values (7,'指定比例') 
+
+
+--结算基数
+insert into DictSettleBase (Code, Name) values (1,'合同金额')
+insert into DictSettleBase (Code, Name) values (2,'首付金额')
+insert into DictSettleBase (Code, Name) values (3,'回款金额')
+insert into DictSettleBase (Code, Name) values (4,'分期阶段')
+insert into DictSettleBase (Code, Name) values (5,'单套结算')
+
+
+--结算参数之间的逻辑关系及限定
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (1,'全款',1,'合同金额',3,'回款金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (2,'贷款',2,'首付金额',3,'回款金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (3,'全款分期',3,'分期首笔',1,'合同金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (3,'全款分期',3,'分期首笔',3,'回款金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (3,'全款分期',4,'分期阶段',4,'分期阶段')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (4,'首付分期',3,'分期首笔',1,'合同金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (4,'首付分期',3,'分期首笔',2,'首付金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (4,'首付分期',3,'分期首笔',3,'回款金额')
+insert into SchemeSettle (PayCode,PayName,StandardCode,StandardName,BaseCode,BaseName) values (4,'首付分期',4,'分期阶段',4,'分期阶段')
+
+
+--跳点基准(不区分项目类型、销售类型)
+insert into DictUpBase (Code, Name) values (1,'认购总额')
+insert into DictUpBase (Code, Name) values (2,'签约总额')
+insert into DictUpBase (Code, Name) values (3,'回款金额')
+insert into DictUpBase (Code, Name) values (4,'销售面积')
+insert into DictUpBase (Code, Name) values (5,'销售套数')
+
+
+
+
+insert into PerformanceRate (Code, Name, Rate) values (1,'分配',50)
+insert into PerformanceRate (Code, Name, Rate) values (2,'调岗',70)
+insert into PerformanceRate (Code, Name, Rate) values (3,'调岗',30)
+
+
+
+
+
+
+
+
+--=============待确认数据============================
+
+--收款类型：
+--成销(结算条件)
+--补差
+--交房
+--限价
+
+--员工职位：
+--置业顾问、销售经理、项目总监、策划、财务
+
+
+--==============单元测试数据=================================
+
+--付款方式
+insert into PaymentMode (ProjectID, PayName, PayType,PayTypeName, DownPayRate, StandardCode, StandardName, BaseCode, BaseName) values (1,'一次性全款',1,'全款',100,1,'合同金额',3,'回款金额')
+
+
+--项目
+insert into Project (ProjectName, FirstParty) values ('幸福家园','幸福房地产有限公司')
+insert into Project (ProjectName, FirstParty) values ('新新小镇','花园房地产有限公司')
+insert into Project (ProjectName, FirstParty) values ('铂金汉宫','铂金房地产有限公司')
+
+--自定义数据，用户可自行维护，初始默认
+
+--房源类型
+insert into DictItemType (Name,ProjectID) values ('房屋',1)
+insert into DictItemType (Name,ProjectID) values ('商业',1)
+insert into DictItemType (Name,ProjectID) values ('储藏间',1)
+insert into DictItemType (Name,ProjectID) values ('车位',1)
+insert into DictItemType (Name,ProjectID) values ('其它',1)
+
+
+--房产信息
+--房屋
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','1','1','0101',1,'房屋',80,5000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','1','1','0102',1,'房屋',95,5050)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','1','2','1601',1,'房屋',125.85,6500)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','1','2','2202',1,'房屋',136.66,6588)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','2','3','0801',1,'房屋',96,5375)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','2','3','1003',1,'房屋',86.24,5454)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','2','3','3202',1,'房屋',105.28,5608)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (2,'新新小镇','1','1','0101',1,'房屋',90,6000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (2,'新新小镇','1','1','0102',1,'房屋',88.5,6650)
+
+--商业
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','','','A301',2,'商业',120.55,8650)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','','','A302',2,'商业',245.76,8252)
+
+--储藏间
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price,IsBind) values (1,'幸福家园','1','','001',3,'储藏间',12.25,2250,1)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price,IsBind) values (1,'幸福家园','1','','002',3,'储藏间',8.76,2000,1)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price,IsBind) values (1,'幸福家园','1','','003',3,'储藏间',10.66,2250,1)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price,IsBind) values (1,'幸福家园','1','','004',3,'储藏间',15.38,3000,1)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price,IsBind) values (1,'幸福家园','1','','005',3,'储藏间',10,3000,1)
+
+--车位
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','1','','C01',4,'车位',10,16000)
+insert into SaleItem (ProjectID,ProjectName,Building,Unit,ItemNum,ItemTypeCode,ItemTypeName,Area,Price) values (1,'幸福家园','1','','C02',4,'车位',10,18500)
+
+
+
+
+--客户
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'张三','13900001234')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'李四','13911112222')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'王五','13922228888')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'冯大','13933331234')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'陈小','13944442222')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'褚中','13955558888')
+
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (2,'李大宾','13933336666')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (2,'郑小末','13944446666')
+insert into Customer(ProjectID,CustomerName,CustomerPhone) values (2,'陈强','13955556666')
+
+--置业顾问
+insert into Sales (SalesName,ProjectID,ProjectName) values ('赵东南',1,'幸福家园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('钱西北',1,'幸福家园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('孙中心',1,'幸福家园')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('周工',2,'新新小镇')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('吴师',2,'新新小镇')
+insert into Sales (SalesName,ProjectID,ProjectName) values ('王商',2,'新新小镇')
+
+
+
+
+--系统用户
+--insert into sysuser (UserName, UserPwd, UserType, ProjectID, ProjectName) values ('user', 1, 2, 1,'')
+--insert into sysuser (UserName, UserPwd, UserType, ProjectID, ProjectName) values ('demo', 1, 2, 2,'')
+--insert into sysuser (UserName, UserPwd, UserType, ProjectID, ProjectName) values ('test', 1, 2, 3,'')
+
+
+-----------------------------------------------------------------------------------------------------
+--数据库登录名：commission  密码：sjqc@sjz_2016&CC       加密字符串：y1kxZrKe/5D48f3SEQQ+nmP64JFnngwo
+

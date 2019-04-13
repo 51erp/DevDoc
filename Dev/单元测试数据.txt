@@ -62,9 +62,9 @@ insert into Customer(ProjectID,CustomerName,CustomerPhone) values (1,'褚中','139
 --insert into Customer(ProjectID,CustomerName,CustomerPhone) values (2,'陈强','13955556666')
 
 --置业顾问
-insert into Sales (SalesName,ProjectID,ProjectName) values ('赵东南',1,'幸福家园(演示)')
-insert into Sales (SalesName,ProjectID,ProjectName) values ('钱西北',1,'幸福家园(演示)')
-insert into Sales (SalesName,ProjectID,ProjectName) values ('孙中心',1,'幸福家园(演示)')
+--insert into Sales (SalesName,ProjectID,ProjectName) values ('赵东南',1,'幸福家园(演示)')
+--insert into Sales (SalesName,ProjectID,ProjectName) values ('钱西北',1,'幸福家园(演示)')
+--insert into Sales (SalesName,ProjectID,ProjectName) values ('孙中心',1,'幸福家园(演示)')
 --insert into Sales (SalesName,ProjectID,ProjectName) values ('周工',2,'新新小镇')
 --insert into Sales (SalesName,ProjectID,ProjectName) values ('吴师',2,'新新小镇')
 --insert into Sales (SalesName,ProjectID,ProjectName) values ('王商',2,'新新小镇')

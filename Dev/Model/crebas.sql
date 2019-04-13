@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     2019-01-05 9:17:20                           */
+/* Created on:     2019-03-26 11:08:58                          */
 /*==============================================================*/
 
 
@@ -51,6 +51,13 @@ if exists (select 1
            where  id = object_id('Customer')
             and   type = 'U')
    drop table Customer
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('Department')
+            and   type = 'U')
+   drop table Department
 go
 
 if exists (select 1
@@ -160,6 +167,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('JobTrack')
+            and   type = 'U')
+   drop table JobTrack
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('MenuList')
             and   type = 'U')
    drop table MenuList
@@ -230,6 +244,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('SaleRange')
+            and   type = 'U')
+   drop table SaleRange
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('Sales')
             and   type = 'U')
    drop table Sales
@@ -293,13 +314,6 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('Transactions')
-            and   type = 'U')
-   drop table Transactions
-go
-
-if exists (select 1
-            from  sysobjects
            where  id = object_id('UpSettleDetail')
             and   type = 'U')
    drop table UpSettleDetail
@@ -324,13 +338,6 @@ if exists (select 1
            where  id = object_id('UserProject')
             and   type = 'U')
    drop table UserProject
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Z00_StopUse_Operation')
-            and   type = 'U')
-   drop table Z00_StopUse_Operation
 go
 
 if exists (select 1
@@ -606,6 +613,20 @@ create table Customer (
    CusTypeCode          int                  null,
    CusTypeName          varchar(50)          null,
    constraint PK_CUSTOMER primary key (CustomerID)
+)
+go
+
+/*==============================================================*/
+/* Table: Department                                            */
+/*==============================================================*/
+create table Department (
+   DeptID               int                  identity,
+   DeptName             varchar(50)          null,
+   ParentID             int                  null,
+   ProjectID            int                  null,
+   Memo                 varchar(200)         null,
+   State                bit                  null default 1,
+   constraint PK_DEPARTMENT primary key (DeptID)
 )
 go
 
@@ -988,6 +1009,21 @@ create table ItemReturn (
 go
 
 /*==============================================================*/
+/* Table: JobTrack                                              */
+/*==============================================================*/
+create table JobTrack (
+   ID                   int                  identity,
+   SalesID              int                  null,
+   JobType              varchar(20)          null,
+   DeptID               int                  null,
+   DeptName             varchar(50)          null,
+   BeginDate            date                 null,
+   EndDate              date                 null,
+   constraint PK_JOBTRACK primary key (ID)
+)
+go
+
+/*==============================================================*/
 /* Table: MenuList                                              */
 /*==============================================================*/
 create table MenuList (
@@ -1365,6 +1401,19 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
+/* Table: SaleRange                                             */
+/*==============================================================*/
+create table SaleRange (
+   ID                   int                  identity,
+   JobID                int                  null,
+   ItemID               int                  null,
+   InDate               date                 null,
+   OutDate              date                 null,
+   constraint PK_SALERANGE primary key (ID)
+)
+go
+
+/*==============================================================*/
 /* Table: Sales                                                 */
 /*==============================================================*/
 create table Sales (
@@ -1516,6 +1565,7 @@ create table SettleDetail (
    Premium              money                null default 0,
    CommTotal            money                null default 0,
    SalesName            varchar(20)          null,
+   FirstSettle          int                  null,
    constraint PK_SETTLEDETAIL primary key (ID)
 )
 go
@@ -1681,35 +1731,6 @@ go
 insert into sysuser (UserName, UserPwd, UserType) values ('admin',1,0)
 
 /*==============================================================*/
-/* Table: Transactions                                          */
-/*==============================================================*/
-create table Transactions (
-   ProjectID            int                  null,
-   ContractID           int                  null,
-   TransType            int                  null,
-   TransTypeName        varchar(20)          null,
-   TransSource          int                  null
-)
-go
-
-if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('Transactions') and minor_id = 0)
-begin 
-   declare @CurrentUser sysname 
-select @CurrentUser = user_name() 
-execute sp_dropextendedproperty 'MS_Description',  
-   'user', @CurrentUser, 'table', 'Transactions' 
- 
-end 
-
-
-select @CurrentUser = user_name() 
-execute sp_addextendedproperty 'MS_Description',  
-   '可用于查看业务操作历史', 
-   'user', @CurrentUser, 'table', 'Transactions'
-go
-
-/*==============================================================*/
 /* Table: UpSettleDetail                                        */
 /*==============================================================*/
 create table UpSettleDetail (
@@ -1797,40 +1818,6 @@ create table UserProject (
    UserName             varchar(50)          null,
    ProjectID            int                  null,
    ProjectName          varchar(100)         null
-)
-go
-
-/*==============================================================*/
-/* Table: Z00_StopUse_Operation                                 */
-/*==============================================================*/
-create table Z00_StopUse_Operation (
-   ID                   int                  null,
-   DocmentType          int                  null,
-   OperationType        varchar(20)          null,
-   OperationDate        date                 null,
-   Memo                 varchar(200)         null,
-   OperationUser        varchar(20)          null,
-   AgreementID          int                  identity,
-   AgreementNum         varchar(50)          null,
-   AgreementDate        date                 null,
-   CustomerID           int                  null,
-   CustomerName         varchar(50)          null,
-   ItemID               int                  null,
-   Building             varchar(20)          null,
-   Unit                 varchar(20)          null,
-   ItemNum              varchar(50)          null,
-   Area                 decimal(18,2)        null,
-   Price                money                null,
-   Amount               money                null,
-   PaymentID            int                  null,
-   PaymentName          varchar(50)          null,
-   DownPayRate          int                  null default 0,
-   DownPayAmount        money                null,
-   Loan                 money                null,
-   TotalAmount          money                null,
-   SalesID              int                  null,
-   SalesName            varchar(20)          null,
-   constraint PK_Z00_STOPUSE_OPERATION primary key (AgreementID)
 )
 go
 

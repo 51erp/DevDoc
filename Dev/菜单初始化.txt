@@ -7,7 +7,7 @@ insert into menulist (id,MenuName,MenuText,ParentID) values (6,'ToolStripMenuIte
 insert into menulist (id,MenuName,MenuText,ParentID) values (7,'ToolStripMenuItem_Exit','退出',1)
 insert into menulist (id,MenuName,MenuText,ParentID) values (8,'ToolStripMenuItem_ProjectMng','项目设置',0)
 insert into menulist (id,MenuName,MenuText,ParentID) values (9,'ToolStripMenuItem_Project','项目信息',8)
-insert into menulist (id,MenuName,MenuText,ParentID) values (10,'ToolStripMenuItem_organiz','组织架构',8)
+insert into menulist (id,MenuName,MenuText,ParentID) values (10,'ToolStripMenuItem_organiz','部门管理',8)
 insert into menulist (id,MenuName,MenuText,ParentID) values (11,'ToolStripMenuItem_ItemType','物业类型',8)
 insert into menulist (id,MenuName,MenuText,ParentID) values (12,'ToolStripMenuItem_ContractDate','签约预期',8)
 insert into menulist (id,MenuName,MenuText,ParentID) values (13,'ToolStripMenuItem_PayMode','付款方式',8)
