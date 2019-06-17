@@ -1,8 +1,25 @@
 Windows : 
-USER:commission 
-PWD: sjqc@2018#SJZ
+username: commission 
+password: sjqc@2018#SJZ
 
 router : sjqc@2018
 
+wifi£∫shijiqingcheng86061012
+
+
 ADSL”√ªß£∫031105608589@adsl8
 ADSL√‹¬Î£∫
+
+
+SQL Server:
+username: sjqc
+password: sjqc@2018#SJZ
+
+
+TeamViewer : 498199497
+password: qwer1234
+
+
+
+
+

@@ -63,6 +63,17 @@ insert into menulist (id,MenuName,MenuText,ParentID) values (62,'ToolStripMenuIt
 insert into menulist (id,MenuName,MenuText,ParentID) values (63,'ToolStripMenuItem_Online','帮助文档',62)
 insert into menulist (id,MenuName,MenuText,ParentID) values (64,'ToolStripMenuItem_About','关于',62)
 
+
+
+
+insert into menulist (id,MenuName,MenuText,ParentID) values (65,'ToolStripMenuItem_JobChangeRep','员工岗位变动',52)
+insert into menulist (id,MenuName,MenuText,ParentID) values (66,'ToolStripMenuItem_PerformanceRate','业绩提点',8)
+insert into menulist (id,MenuName,MenuText,ParentID) values (67,'ToolStripMenuItem_SubReciept','认购回款',52)
+insert into menulist (id,MenuName,MenuText,ParentID) values (68,'ToolStripMenuItem_NoJobRep','离职调出',52)
+
+
+
+
 update menulist set IsDefault = 1 where id = 1
 update menulist set IsDefault = 1 where id = 4
 update menulist set IsDefault = 1 where id = 5
