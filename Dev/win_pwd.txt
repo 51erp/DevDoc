@@ -1,10 +1,15 @@
 Windows : 
 username: commission 
+
+username: Administrator
 password: sjqc@2018#SJZ
 
 router : sjqc@2018
 
-wifi£∫shijiqingcheng86061012
+wifi£∫SHIJIQINGCHENGSUSHE
+
+
+ADSL 
 
 
 ADSL”√ªß£∫031105608589@adsl8
@@ -17,7 +22,10 @@ password: sjqc@2018#SJZ
 
 
 TeamViewer : 498199497
-password: qwer1234
+password: qwer123456
+
+
+
 
 
 
